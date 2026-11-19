@@ -17,11 +17,14 @@ export default function LoginPage() {
     setLoading(true);
     setErrorMessage(null);
 
+    const cleanEmail = email.trim();
+    const cleanPassword = password.trim();
+
     try {
       const res = await fetch("/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email: cleanEmail, password: cleanPassword }),
       });
 
       const data = await res.json();
@@ -128,7 +131,7 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3 mt-2 bg-rose-500 hover:bg-rose-600 text-white font-bold text-xs rounded-xl shadow-md shadow-rose-500/25 disabled:opacity-50 transition-all flex items-center justify-center gap-2"
+            className="w-full py-3 mt-2 bg-rose-500 hover:bg-rose-600 text-white font-bold text-xs rounded-xl shadow-md shadow-rose-500/25 disabled:opacity-50 transition-all flex items-center justify-center gap-2 cursor-pointer"
           >
             {loading ? (
               <span>Signing in...</span>
@@ -140,6 +143,24 @@ export default function LoginPage() {
             )}
           </button>
         </form>
+
+        {/* Quick Demo Credentials Autofill Helper */}
+        <div className="mt-5 p-3 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-center justify-between">
+          <div>
+            <p className="text-[11px] font-bold text-slate-700">Super Admin Demo</p>
+            <p className="text-[10px] text-slate-500 font-mono">admin@walaalaha.com</p>
+          </div>
+          <button
+            type="button"
+            onClick={() => {
+              setEmail("admin@walaalaha.com");
+              setPassword("AdminPassword123!");
+            }}
+            className="px-2.5 py-1 text-[11px] font-bold text-rose-600 bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-lg transition-colors cursor-pointer"
+          >
+            Auto Fill
+          </button>
+        </div>
 
         {/* Footer */}
         <div className="mt-8 pt-4 border-t border-slate-100 text-center text-[11px] text-slate-400">
