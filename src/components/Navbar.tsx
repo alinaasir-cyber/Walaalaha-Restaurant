@@ -1,10 +1,39 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { Search, Bell, ShoppingBag, Globe, User } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { Search, Bell, ShoppingBag, Globe, User, LogOut } from "lucide-react";
 
 export default function Navbar() {
+  const router = useRouter();
+  const [currentUser, setCurrentUser] = useState<{
+    name: string;
+    role: string;
+    email: string;
+  } | null>(null);
+
+  useEffect(() => {
+    fetch("/api/auth/me")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data?.authenticated && data?.user) {
+          setCurrentUser(data.user);
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  const handleLogout = async () => {
+    try {
+      await fetch("/api/auth/logout", { method: "POST" });
+      router.push("/login");
+      router.refresh();
+    } catch (e) {
+      router.push("/login");
+    }
+  };
+
   return (
     <header className="sticky top-0 z-30 flex items-center justify-between h-16 px-6 bg-white border-b border-slate-200">
       {/* Left Search Bar */}
@@ -21,7 +50,7 @@ export default function Navbar() {
 
       {/* Right Controls & Quick Actions */}
       <div className="flex items-center gap-3">
-        {/* Quick Launch POS Button - Soft Red */}
+        {/* Quick Launch POS Button */}
         <Link
           href="/pos/menu"
           className="hidden sm:flex items-center gap-2 px-3.5 py-2 text-xs font-bold text-white bg-rose-500 hover:bg-rose-600 rounded-xl shadow-sm shadow-rose-500/25 transition-all"
@@ -48,15 +77,29 @@ export default function Navbar() {
           <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-rose-500 rounded-full" />
         </button>
 
-        {/* User profile */}
-        <div className="flex items-center gap-2.5 pl-2 border-l border-slate-200">
-          <div className="w-8 h-8 rounded-full bg-rose-50 text-rose-600 flex items-center justify-center font-bold text-xs border border-rose-100">
-            <User className="w-4 h-4" />
+        {/* User profile with Role & Logout */}
+        <div className="flex items-center gap-3 pl-2 border-l border-slate-200">
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-full bg-rose-50 text-rose-600 flex items-center justify-center font-bold text-xs border border-rose-100">
+              <User className="w-4 h-4" />
+            </div>
+            <div className="hidden md:block text-left">
+              <p className="text-xs font-bold text-slate-800 leading-tight">
+                {currentUser?.name || "Admin User"}
+              </p>
+              <p className="text-[10px] text-rose-500 font-semibold uppercase tracking-wider">
+                {currentUser?.role || "SUPER_ADMIN"}
+              </p>
+            </div>
           </div>
-          <div className="hidden md:block text-left">
-            <p className="text-xs font-bold text-slate-800 leading-tight">Admin User</p>
-            <p className="text-[10px] text-slate-400">Main Branch</p>
-          </div>
+
+          <button
+            onClick={handleLogout}
+            title="Sign Out"
+            className="p-1.5 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+          >
+            <LogOut className="w-4 h-4" />
+          </button>
         </div>
       </div>
     </header>
