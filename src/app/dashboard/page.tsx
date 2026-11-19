@@ -26,7 +26,7 @@ export default function DashboardPage() {
   const financialStats = [
     {
       title: "Total Assets",
-      titleSomali: "Hantida Guud",
+      subTitle: "Balance Sheet",
       value: "$28,450",
       description: "Total value of company assets",
       icon: Wallet,
@@ -36,7 +36,7 @@ export default function DashboardPage() {
     },
     {
       title: "Total Liabilities",
-      titleSomali: "Deymaha Lagu Leeyahay",
+      subTitle: "Current Liabilities",
       value: "$6,860",
       description: "Total outstanding debts and obligations",
       icon: Scale,
@@ -46,7 +46,7 @@ export default function DashboardPage() {
     },
     {
       title: "Total Capital",
-      titleSomali: "Raasumaalka",
+      subTitle: "Owner's Equity",
       value: "$21,590",
       description: "Total owner's capital & equity",
       icon: Landmark,
@@ -56,7 +56,7 @@ export default function DashboardPage() {
     },
     {
       title: "Total Revenue",
-      titleSomali: "Dakhliga Guud",
+      subTitle: "Gross Inflow",
       value: "$34,070",
       description: "Total income generated from POS & Events",
       icon: TrendingUp,
@@ -66,7 +66,7 @@ export default function DashboardPage() {
     },
     {
       title: "Total Expenses",
-      titleSomali: "Kharashaadka Guud",
+      subTitle: "Operating Costs",
       value: "$18,520",
       description: "Total operational costs & purchases",
       icon: TrendingDown,
@@ -76,7 +76,7 @@ export default function DashboardPage() {
     },
     {
       title: "Net Income",
-      titleSomali: "Macaashka Safiga ah",
+      subTitle: "Net Profit",
       value: "+$15,550",
       description: "Revenue minus Expenses (Profit)",
       icon: Activity,
@@ -159,7 +159,7 @@ export default function DashboardPage() {
 
               <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
                 <span>{stat.description}</span>
-                <span className="font-semibold text-slate-600">{stat.titleSomali}</span>
+                <span className="font-semibold text-slate-600">{stat.subTitle}</span>
               </div>
             </div>
           );

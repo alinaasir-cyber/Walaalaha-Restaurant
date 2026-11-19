@@ -26,12 +26,12 @@ import {
 export default function HomePage() {
   const [selectedBranchCity, setSelectedBranchCity] = useState<"Mogadishu" | "Hargeisa" | "Garowe">("Mogadishu");
 
-  // Signature Dishes Inspired by Somali Cuisine and Modern Presentation
+  // Signature Dishes in English
   const signatureDishes = [
     {
       id: "SIG-1",
-      name: "Bariis Iskukaris & Hilib Ari",
-      nameEnglish: "Signature Spiced Rice with Slow-Roasted Goat",
+      name: "Spiced Somali Rice & Roasted Goat",
+      subName: "Bariis Iskukaris & Hilib Ari",
       category: "Main Course",
       price: "$8.50",
       description:
@@ -42,8 +42,8 @@ export default function HomePage() {
     },
     {
       id: "SIG-2",
-      name: "Baasto Salbuko & Kalluun Doolshood",
-      nameEnglish: "Traditional Pasta with Fresh Somali Ocean Catch",
+      name: "Traditional Pasta with Fresh Ocean Fish",
+      subName: "Baasto Salbuko & Kalluun",
       category: "Seafood & Pasta",
       price: "$7.00",
       description:
@@ -54,8 +54,8 @@ export default function HomePage() {
     },
     {
       id: "SIG-3",
-      name: "Suqaar Digaag & Chapati / Canjeero",
-      nameEnglish: "Tender Diced Chicken Suqaar with Golden Flatbread",
+      name: "Tender Diced Chicken Suqaar",
+      subName: "Suqaar Digaag with Chapati",
       category: "Breakfast & Dinner",
       price: "$5.50",
       description:
@@ -66,8 +66,8 @@ export default function HomePage() {
     },
     {
       id: "SIG-4",
-      name: "Shaah Cadays & Xawaash Gaar ah",
-      nameEnglish: "Spiced Somali Royal Milk Tea",
+      name: "Royal Spiced Somali Milk Tea",
+      subName: "Shaah Cadays with Cardamom & Ginger",
       category: "Artisanal Beverages",
       price: "$1.50",
       description:
@@ -79,7 +79,7 @@ export default function HomePage() {
     {
       id: "SIG-5",
       name: "Lotus & Caramel Tres Leches",
-      nameEnglish: "Sponge Cake Soaked in Rich Milk & Lotus Cream",
+      subName: "Signature Caramelized Milk Sponge Cake",
       category: "Artisan Pastry",
       price: "$4.00",
       description:
@@ -90,8 +90,8 @@ export default function HomePage() {
     },
     {
       id: "SIG-6",
-      name: "Qaxwo Somali & Xalwo Macaan",
-      nameEnglish: "Traditional Spiced Coffee with Somali Halwa",
+      name: "Traditional Spiced Coffee & Sweet Halwa",
+      subName: "Somali Qaxwo & Xalwo",
       category: "Heritage Experience",
       price: "$3.00",
       description:
@@ -107,7 +107,7 @@ export default function HomePage() {
     Mogadishu: [
       {
         name: "Taleex Flagship",
-        area: "Wadada Wadnaha, Hodan",
+        area: "Wadnaha Road, Hodan District",
         type: "Full Dine-in, VIP Banquets, Drive-thru",
         hours: "6:00 AM – 11:30 PM",
         phone: "+252 61 5000001",
@@ -115,7 +115,7 @@ export default function HomePage() {
       },
       {
         name: "KM4 Maka Al-Mukarama",
-        area: "KM4 Junction, Hodan/Waberi",
+        area: "KM4 Junction, Business District",
         type: "Executive Dining & Outdoor Terrace",
         hours: "6:30 AM – 11:00 PM",
         phone: "+252 61 5000002",
@@ -132,7 +132,7 @@ export default function HomePage() {
       {
         name: "Xamar Weyne Waterfront",
         area: "Historic District, Old Port",
-        type: "Fresh Coastal Seafood & Sunset View",
+        type: "Fresh Coastal Seafood & Ocean View",
         hours: "11:00 AM – 11:30 PM",
         phone: "+252 61 5000004",
         badge: "Ocean View",
@@ -141,7 +141,7 @@ export default function HomePage() {
     Hargeisa: [
       {
         name: "Jigjiga Yar Premier",
-        area: "Wadada Madaxtooyada, Jigjiga Yar",
+        area: "Presidential Palace Road, Jigjiga Yar",
         type: "Full Dining, Garden Terrace & Wedding Hall",
         hours: "6:30 AM – 11:00 PM",
         phone: "+252 63 4000001",
@@ -159,7 +159,7 @@ export default function HomePage() {
     Garowe: [
       {
         name: "Tamam Park Garden",
-        area: "Wadada Garowe-Bosaso, Central",
+        area: "Garowe-Bosaso Highway, Central",
         type: "Outdoor Family Park, Dine-in & VIP Suites",
         hours: "6:30 AM – 11:00 PM",
         phone: "+252 90 7000001",
@@ -171,27 +171,27 @@ export default function HomePage() {
   // Event & Wedding Halls
   const halls = [
     {
-      name: "Hoolka Al-Baraka (Grand Ballroom)",
-      capacity: "500 - 800 Qof",
-      purpose: "Aroosyada Waawayn, Xafladaha Qalin-jabinta, iyo Shirarka Heerka Qaran",
-      features: ["VIP Stage & Stage Lighting", "Sound System & Live Broadcast", "Dedicated Catering Staff", "Private Bridal Suite"],
-      price: "$1,200 / Xaflad",
+      name: "Al-Baraka Grand Ballroom",
+      capacity: "500 - 800 Guests",
+      purpose: "Luxury Weddings, Graduation Galas, and National Corporate Events",
+      features: ["VIP Stage & Professional Lighting", "Surround Sound & Live Broadcast Setup", "Dedicated Banquet & Catering Staff", "Private Bridal & VIP Suite"],
+      price: "$1,200 / Event",
       badge: "Most Popular",
     },
     {
-      name: "Hoolka Al-Najax (Executive Conference)",
-      capacity: "150 - 300 Qof",
-      purpose: "Shirarka Shirkadaha, Tababarada Hay'adaha, iyo Kulannada Ganacsiga",
-      features: ["High-speed Wi-Fi & Projectors", "Executive Seating & Sound", "Coffee Break & Lunch Buffet", "Podium & Microphones"],
-      price: "$600 / Maalin",
+      name: "Al-Najax Executive Hall",
+      capacity: "150 - 300 Guests",
+      purpose: "Corporate Conferences, Seminars, and Institutional Workshops",
+      features: ["High-speed Wi-Fi & HD Projectors", "Executive Seating & Digital Audio", "Coffee Break & Lunch Buffet Setup", "Podium & Wireless Microphones"],
+      price: "$600 / Day",
       badge: "Corporate",
     },
     {
       name: "VIP Banquet Lounge",
-      capacity: "40 - 80 Qof",
-      purpose: "Qado-sharafeedka Gaarka ah, Dhalashada, iyo Shirarka Golaha Sare",
-      features: ["Private Waiter Service", "Tailored Custom Menu", "Luxury Tableware", "Privacy & Security"],
-      price: "$350 / Kulankii",
+      capacity: "40 - 80 Guests",
+      purpose: "Private Dining, Birthday Celebrations, and Board of Directors Meetings",
+      features: ["Dedicated Private Waiter Service", "Tailored Custom Multi-Course Menu", "Luxury Porcelain Tableware", "Maximum Privacy & Security"],
+      price: "$350 / Session",
       badge: "VIP Exclusive",
     },
   ];
@@ -204,12 +204,12 @@ export default function HomePage() {
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-1.5 text-rose-400 font-semibold">
               <Sparkles className="w-3.5 h-3.5" />
-              <span>Kusoo Dhawoow Makhaayadda Walaalaha</span>
+              <span>Welcome to Walaalaha Restaurant & Café</span>
             </span>
             <span className="hidden md:inline text-slate-600">&bull;</span>
             <span className="hidden md:flex items-center gap-1.5 text-slate-400">
               <Clock className="w-3.5 h-3.5" />
-              <span>Furan Maalin Kasta: 6:00 AM – 11:30 PM</span>
+              <span>Open Daily: 6:00 AM – 11:30 PM</span>
             </span>
           </div>
 
@@ -219,7 +219,7 @@ export default function HomePage() {
               className="flex items-center gap-1.5 text-slate-300 hover:text-white font-medium transition-colors"
             >
               <Phone className="w-3 h-3 text-rose-400" />
-              <span>Dalabka Tooska ah: +252 61 5000000</span>
+              <span>Direct Orders & Hotline: +252 61 5000000</span>
             </a>
             <span className="text-slate-700">|</span>
             <Link
@@ -254,22 +254,22 @@ export default function HomePage() {
             </div>
           </Link>
 
-          {/* Nav Links */}
+          {/* Nav Links in English */}
           <nav className="hidden lg:flex items-center gap-8 text-xs font-bold text-slate-700">
             <a href="#about" className="hover:text-rose-500 transition-colors">
-              Sheekadeena (About)
+              Our Story
             </a>
             <a href="#menu" className="hover:text-rose-500 transition-colors">
-              Cuntooyinka (Menu)
+              Menu & Specialties
             </a>
             <a href="#pickup" className="hover:text-rose-500 transition-colors">
-              Gaarsiinta (Delivery)
+              Delivery & Pickup
             </a>
             <a href="#branches" className="hover:text-rose-500 transition-colors">
-              Laamaha (Locations)
+              Locations
             </a>
             <a href="#halls" className="hover:text-rose-500 transition-colors">
-              Hoolalka & Aroosyada (Halls)
+              Event Halls & Banquets
             </a>
           </nav>
 
@@ -280,7 +280,7 @@ export default function HomePage() {
               className="hidden sm:flex items-center gap-1.5 px-4 py-2.5 text-xs font-bold text-slate-700 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl transition-all"
             >
               <Users className="w-3.5 h-3.5 text-slate-400" />
-              <span>Galitaanka Shaqaalaha</span>
+              <span>Staff Login</span>
             </Link>
 
             <Link
@@ -288,13 +288,13 @@ export default function HomePage() {
               className="flex items-center gap-2 px-5 py-2.5 text-xs font-black text-white bg-rose-500 hover:bg-rose-600 rounded-xl shadow-md shadow-rose-500/25 transition-all transform hover:-translate-y-0.5"
             >
               <ShoppingBag className="w-4 h-4" />
-              <span>Dalbo Cuntada (Order Now)</span>
+              <span>Order Online Now</span>
             </Link>
           </div>
         </div>
       </header>
 
-      {/* 3. Hero Section (Premium Modern Style) */}
+      {/* 3. Hero Section (English) */}
       <section className="relative overflow-hidden bg-gradient-to-b from-rose-50/40 via-white to-slate-50 py-20 lg:py-28">
         {/* Subtle Background Blobs */}
         <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-rose-200/30 rounded-full blur-3xl pointer-events-none" />
@@ -306,7 +306,7 @@ export default function HomePage() {
             <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-rose-100/70 border border-rose-200 text-rose-700 text-xs font-bold">
                 <Sparkles className="w-3.5 h-3.5" />
-                <span>Dhadhanka Asalka Ah Ee Cuntada Soomaaliyeed</span>
+                <span>Authentic Somali Cuisine & Modern Hospitality</span>
               </div>
 
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-950 tracking-tight leading-[1.15]">
@@ -318,8 +318,7 @@ export default function HomePage() {
               </h1>
 
               <p className="text-sm sm:text-base text-slate-600 max-w-2xl font-medium leading-relaxed">
-                Laga bilaabo Bariiska carfaya ee Xawaashka iyo Hilibka Ariga jilicsan, ilaa Baasto Salbukada xeebta iyo Qaxwada casriga ah.
-                Walaalaha Restaurant waxay kuu haysaa cunto tayo sare leh, hoolal qaali ah oo loogu talagalay aroosyada iyo shirarka, iyo gaarsiin degdeg ah.
+                From fragrant spiced Basmati rice and fall-off-the-bone slow-roasted goat to authentic coastal pasta, artisanal tea blends, and grand wedding banquets. Experience the finest in Somali hospitality.
               </p>
 
               {/* CTA Buttons */}
@@ -329,7 +328,7 @@ export default function HomePage() {
                   className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-7 py-3.5 text-sm font-bold text-white bg-rose-500 hover:bg-rose-600 rounded-2xl shadow-xl shadow-rose-500/25 transition-all transform hover:-translate-y-0.5"
                 >
                   <ShoppingBag className="w-5 h-5" />
-                  <span>Dalbo Hadda (Pickup & Delivery)</span>
+                  <span>Order Online (Pickup & Delivery)</span>
                   <ArrowRight className="w-4 h-4" />
                 </Link>
 
@@ -338,7 +337,7 @@ export default function HomePage() {
                   className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-6 py-3.5 text-sm font-bold text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 rounded-2xl shadow-sm transition-all"
                 >
                   <PartyPopper className="w-4 h-4 text-purple-600" />
-                  <span>Kireyso Hool (Book a Hall)</span>
+                  <span>Book Event Hall</span>
                 </a>
               </div>
 
@@ -346,15 +345,15 @@ export default function HomePage() {
               <div className="pt-8 border-t border-slate-200/80 grid grid-cols-3 gap-4 text-left">
                 <div>
                   <div className="text-2xl font-black text-slate-900">4.9 ★</div>
-                  <div className="text-xs text-slate-500 font-medium">15,000+ Macmiil</div>
+                  <div className="text-xs text-slate-500 font-medium">15,000+ Happy Customers</div>
                 </div>
                 <div>
-                  <div className="text-2xl font-black text-slate-900">30 Daqiiqo</div>
-                  <div className="text-xs text-slate-500 font-medium">Celceliska Gaarsiinta</div>
+                  <div className="text-2xl font-black text-slate-900">30 Mins</div>
+                  <div className="text-xs text-slate-500 font-medium">Average Delivery Time</div>
                 </div>
                 <div>
                   <div className="text-2xl font-black text-slate-900">100% Halal</div>
-                  <div className="text-xs text-slate-500 font-medium">Cunto Cusub & Nadiif ah</div>
+                  <div className="text-xs text-slate-500 font-medium">Fresh Daily Ingredients</div>
                 </div>
               </div>
             </div>
@@ -363,7 +362,7 @@ export default function HomePage() {
             <div className="lg:col-span-5 relative">
               <div className="relative mx-auto max-w-md bg-white rounded-3xl border border-slate-200/80 shadow-2xl p-6 overflow-hidden">
                 <div className="absolute top-0 right-0 bg-rose-500 text-white text-[10px] font-black uppercase px-4 py-1 rounded-bl-2xl">
-                  Bisha Cuntadeeda
+                  Monthly Pick
                 </div>
 
                 <div className="h-56 bg-gradient-to-br from-rose-50 to-amber-50 rounded-2xl flex flex-col items-center justify-center text-7xl select-none mb-6 relative">
@@ -377,20 +376,20 @@ export default function HomePage() {
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <div>
-                      <h3 className="text-lg font-black text-slate-900">Bariis Iskukaris & Hilib Ari</h3>
-                      <p className="text-xs text-rose-500 font-bold">Traditional Fragrant Rice with Roasted Goat</p>
+                      <h3 className="text-lg font-black text-slate-900">Spiced Rice & Roasted Goat</h3>
+                      <p className="text-xs text-rose-500 font-bold">Bariis Iskukaris & Hilib Ari</p>
                     </div>
                     <span className="text-xl font-black text-slate-900">$8.50</span>
                   </div>
 
                   <p className="text-xs text-slate-500 leading-relaxed font-medium">
-                    Waxaa lagu kariyay xawaashka carfaya ee Soomaaliga, basasha la shiilay, sabiib, iyo moos cusub.
+                    Simmered with aromatic cardamom, cinnamon, cloves, topped with caramelized onions, golden raisins, and sweet fresh banana.
                   </p>
 
                   <div className="pt-2 flex items-center gap-2 text-[11px] text-slate-600 font-semibold">
-                    <span className="px-2.5 py-1 bg-slate-100 rounded-lg">Xawaash Asal ah</span>
-                    <span className="px-2.5 py-1 bg-slate-100 rounded-lg">Moos Biyo La'aan</span>
-                    <span className="px-2.5 py-1 bg-slate-100 rounded-lg">Maraq Kulul</span>
+                    <span className="px-2.5 py-1 bg-slate-100 rounded-lg">Heritage Spices</span>
+                    <span className="px-2.5 py-1 bg-slate-100 rounded-lg">Slow Roasted</span>
+                    <span className="px-2.5 py-1 bg-slate-100 rounded-lg">Hot Savory Broth</span>
                   </div>
 
                   <Link
@@ -398,7 +397,7 @@ export default function HomePage() {
                     className="w-full mt-4 flex items-center justify-center gap-2 py-3 bg-rose-500 hover:bg-rose-600 text-white font-bold text-xs rounded-xl shadow-md shadow-rose-500/25 transition-all"
                   >
                     <ShoppingBag className="w-4 h-4" />
-                    <span>Ku Dalbo 1-Click (Order Now)</span>
+                    <span>Order Online in 1-Click</span>
                   </Link>
                 </div>
               </div>
@@ -407,18 +406,18 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4. Signature Menu Section */}
+      {/* 4. Signature Menu Section (English) */}
       <section id="menu" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-14">
             <span className="text-xs font-bold uppercase tracking-wider text-rose-500">
-              Dhadhan Aad Ka Helayso
+              Taste The Difference
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mt-1">
-              Cuntooyinka Ugu Caansan Ee Walaalaha
+              Walaalaha Signature Specialties
             </h2>
             <p className="text-xs sm:text-sm text-slate-500 mt-2 font-medium">
-              Wax kasta waxaa lagu diyaariyaa maaddooyin cusub oo maxalli ah iyo khibrad cunto karineed oo dhab ah.
+              Every dish is freshly prepared with premium locally-sourced ingredients and authentic culinary craft.
             </p>
           </div>
 
@@ -444,7 +443,7 @@ export default function HomePage() {
                     </h3>
                     <span className="text-base font-black text-slate-900">{dish.price}</span>
                   </div>
-                  <p className="text-[11px] text-slate-400 font-semibold mb-2">{dish.nameEnglish}</p>
+                  <p className="text-[11px] text-slate-400 font-semibold mb-2">{dish.subName}</p>
                   <p className="text-xs text-slate-500 leading-relaxed font-medium line-clamp-3">
                     {dish.description}
                   </p>
@@ -456,7 +455,7 @@ export default function HomePage() {
                     href="/order"
                     className="flex items-center gap-1.5 text-xs font-bold text-rose-500 hover:text-rose-600"
                   >
-                    <span>Dalbo Hadda</span>
+                    <span>Order Now</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>
@@ -469,29 +468,29 @@ export default function HomePage() {
               href="/order"
               className="inline-flex items-center gap-2 px-8 py-3.5 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs rounded-2xl shadow-lg transition-all"
             >
-              <span>Fiiri Menu-ga Oo Dhan & Dalbo (View Full Menu)</span>
+              <span>View Full Menu & Prices</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
         </div>
       </section>
 
-      {/* 5. "Skip the Line" Fast Pickup & Delivery Promo (Inspired by Beydan) */}
+      {/* 5. "Skip the Line" Fast Pickup & Delivery Promo (English) */}
       <section id="pickup" className="py-16 bg-gradient-to-r from-rose-500 to-rose-600 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-8 space-y-4">
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 text-white text-xs font-bold">
                 <Truck className="w-4 h-4" />
-                <span>Gaarsiin Degdeg Ah & Pickup</span>
+                <span>Fast Delivery & In-Store Pickup</span>
               </span>
               <h2 className="text-3xl sm:text-4xl font-black tracking-tight leading-tight">
-                Ha Sugin Safafka. Dalbo Online, Bixi EVC Plus, <br className="hidden sm:inline" />
-                Oo Cuntadaada Isla Markiiba Qaado!
+                Skip The Line. Order Online, Pay with Mobile Money, <br className="hidden sm:inline" />
+                and Enjoy Your Fresh Meal in Minutes!
               </h2>
               <p className="text-sm text-rose-100 max-w-2xl font-medium leading-relaxed">
-                App-ka Walaalaha wuxuu kuu sahlayaa inaad cuntada ka dalbato xafiiskaaga ama gurigaaga.
-                Dooro inaad qaadato adigoon saf gelin (Pickup) ama in gaari laguugu keeno 30 daqiiqo gudahood (Delivery).
+                The Walaalaha ordering system allows you to easily place orders from your phone or office.
+                Choose express in-store pickup with zero waiting or doorstep delivery across Mogadishu within 30 minutes.
               </p>
             </div>
 
@@ -501,29 +500,29 @@ export default function HomePage() {
                 className="flex items-center justify-center gap-2 px-6 py-4 bg-white text-rose-600 hover:bg-rose-50 font-black text-sm rounded-2xl shadow-xl transition-all"
               >
                 <ShoppingBag className="w-4 h-4" />
-                <span>Fur Customer App-ka Hadda</span>
+                <span>Launch Ordering App</span>
               </Link>
               <div className="text-center text-xs text-rose-100 font-semibold">
-                Lacag-bixin ammaan ah oo EVC Plus, Zaad & Sahal ah
+                Instant secure payments with EVC Plus, Zaad, Sahal & Cash
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 6. Branches / Locations Section */}
+      {/* 6. Branches / Locations Section (English) */}
       <section id="branches" className="py-20 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-12">
             <div>
               <span className="text-xs font-bold uppercase tracking-wider text-rose-500">
-                Meel Kasta Waan Kugu Dhow Nahay
+                Always Near You
               </span>
               <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mt-1">
-                Laamaha Makhaayadda Walaalaha
+                Our Restaurant Branches
               </h2>
               <p className="text-xs sm:text-sm text-slate-500 mt-1 font-medium">
-                Ka hel adeeg heer sare ah magaalooyinka ugu waaweyn Soomaaliya.
+                Experience premier hospitality across Somalia’s largest metropolitan areas.
               </p>
             </div>
 
@@ -580,18 +579,18 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 7. Event & Wedding Halls Showcase */}
+      {/* 7. Event & Wedding Halls Showcase (English) */}
       <section id="halls" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-14">
             <span className="text-xs font-bold uppercase tracking-wider text-purple-600">
-              Munaasabadaha & Shirarka
+              Celebrations & Banquets
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mt-1">
-              Hoolalka Casriga Ah Ee Walaalaha
+              Luxury Event & Wedding Halls
             </h2>
             <p className="text-xs sm:text-sm text-slate-500 mt-2 font-medium">
-              Hoolal loogu talagalay Aroosyada, Shirarka Ganacsiga, Dabaaldegyada, iyo Qado-sharafeedka VIP-da.
+              World-class venues equipped for dream weddings, corporate conferences, executive seminars, and private VIP banquets.
             </p>
           </div>
 
@@ -624,7 +623,7 @@ export default function HomePage() {
 
                 <div className="mt-6 pt-4 border-t border-slate-200 flex items-center justify-between">
                   <div>
-                    <span className="text-[10px] uppercase font-bold text-slate-400">Qiimaha Bilowga</span>
+                    <span className="text-[10px] uppercase font-bold text-slate-400">Starting Price</span>
                     <div className="text-base font-black text-slate-900">{hall.price}</div>
                   </div>
 
@@ -632,7 +631,7 @@ export default function HomePage() {
                     href="/order"
                     className="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs rounded-xl shadow-md transition-all"
                   >
-                    Kireyso Hadda
+                    Reserve Hall
                   </Link>
                 </div>
               </div>
@@ -641,7 +640,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 8. Public Footer */}
+      {/* 8. Public Footer (English) */}
       <footer className="bg-slate-950 text-slate-400 py-16 border-t border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
@@ -653,7 +652,7 @@ export default function HomePage() {
                 <span className="text-xl font-black text-white tracking-tight">Walaalaha Restaurant</span>
               </div>
               <p className="text-xs text-slate-400 leading-relaxed font-medium max-w-sm">
-                Makhaayadda Walaalaha waa hoyga cuntada asalka ah ee Soomaaliyeed, qaxwada casriga ah, iyo hoolalka munaasabadaha heerka caalami.
+                Walaalaha Restaurant & Hospitality Group is dedicated to serving authentic culinary heritage, specialty artisanal beverages, and luxury event hosting across Somalia.
               </p>
               <div className="text-xs text-slate-500 font-semibold">
                 &copy; {new Date().getFullYear()} Walaalaha Restaurant Ltd. All rights reserved.
@@ -661,27 +660,27 @@ export default function HomePage() {
             </div>
 
             <div>
-              <h4 className="text-xs font-bold uppercase tracking-wider text-white mb-4">Degdeg U Fur</h4>
+              <h4 className="text-xs font-bold uppercase tracking-wider text-white mb-4">Quick Navigation</h4>
               <ul className="space-y-2 text-xs font-medium">
-                <li><a href="#about" className="hover:text-white transition-colors">Sheekadeena</a></li>
-                <li><a href="#menu" className="hover:text-white transition-colors">Cuntooyinka</a></li>
-                <li><a href="#branches" className="hover:text-white transition-colors">Laamaha</a></li>
-                <li><a href="#halls" className="hover:text-white transition-colors">Hoolalka Aroosyada</a></li>
+                <li><a href="#about" className="hover:text-white transition-colors">Our Story</a></li>
+                <li><a href="#menu" className="hover:text-white transition-colors">Signature Menu</a></li>
+                <li><a href="#branches" className="hover:text-white transition-colors">Locations</a></li>
+                <li><a href="#halls" className="hover:text-white transition-colors">Banquet Halls</a></li>
               </ul>
             </div>
 
             <div>
-              <h4 className="text-xs font-bold uppercase tracking-wider text-white mb-4">Adeegyada</h4>
+              <h4 className="text-xs font-bold uppercase tracking-wider text-white mb-4">Services</h4>
               <ul className="space-y-2 text-xs font-medium">
-                <li><Link href="/order" className="hover:text-white transition-colors">Dalabka Online-ka</Link></li>
-                <li><Link href="/order" className="hover:text-white transition-colors">Gaarsiinta (Delivery)</Link></li>
-                <li><Link href="/order" className="hover:text-white transition-colors">Kireysiga Hoolka</Link></li>
-                <li><Link href="/login" className="hover:text-white transition-colors">Barta Shaqaalaha</Link></li>
+                <li><Link href="/order" className="hover:text-white transition-colors">Online Ordering</Link></li>
+                <li><Link href="/order" className="hover:text-white transition-colors">Fast Delivery</Link></li>
+                <li><Link href="/order" className="hover:text-white transition-colors">Hall Reservations</Link></li>
+                <li><Link href="/login" className="hover:text-white transition-colors">Employee Portal</Link></li>
               </ul>
             </div>
 
             <div>
-              <h4 className="text-xs font-bold uppercase tracking-wider text-white mb-4">Nala Soo Xiriir</h4>
+              <h4 className="text-xs font-bold uppercase tracking-wider text-white mb-4">Contact & Support</h4>
               <ul className="space-y-2 text-xs font-medium text-slate-400">
                 <li className="flex items-center gap-2">
                   <Phone className="w-3.5 h-3.5 text-rose-400" />
@@ -689,7 +688,7 @@ export default function HomePage() {
                 </li>
                 <li className="flex items-center gap-2">
                   <MapPin className="w-3.5 h-3.5 text-rose-400" />
-                  <span>Taleex, Wadnaha, Muqdisho</span>
+                  <span>Taleex, Wadnaha Road, Mogadishu</span>
                 </li>
                 <li className="pt-2">
                   <Link

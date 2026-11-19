@@ -256,10 +256,10 @@ export default function CustomerOrderingApp() {
           <div className="p-4 rounded-2xl bg-gradient-to-r from-rose-500 to-rose-600 text-white shadow-lg shadow-rose-500/20 relative overflow-hidden">
             <div className="relative z-10">
               <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-white/20 text-[10px] font-bold">
-                <Sparkles className="w-3 h-3" /> Special Somali Cuisine
+                <Sparkles className="w-3 h-3" /> Special Cuisine & Fast Delivery
               </span>
-              <h2 className="text-lg font-black mt-1">Cunto Macaan & Gaarsiin Degdeg ah</h2>
-              <p className="text-xs text-rose-100 mt-0.5">Dalbo hadda, wax ka yar 30 daqiiqo ku hel!</p>
+              <h2 className="text-lg font-black mt-1">Fresh Food Delivered Fast</h2>
+              <p className="text-xs text-rose-100 mt-0.5">Order now and receive fresh within 30 minutes!</p>
             </div>
             <div className="absolute right-[-10px] bottom-[-10px] text-6xl opacity-30 select-none">
               🍛
@@ -300,7 +300,7 @@ export default function CustomerOrderingApp() {
                     : "bg-white border border-slate-200 text-slate-600 hover:bg-slate-100"
                 }`}
               >
-                {cat.nameSomali || cat.name}
+                {cat.name}
               </button>
             ))}
           </div>
@@ -325,8 +325,8 @@ export default function CustomerOrderingApp() {
                     <div className="h-20 rounded-xl bg-slate-50 flex items-center justify-center text-4xl mb-2">
                       {item.image || "🍽️"}
                     </div>
-                    <h3 className="font-bold text-xs text-slate-800 line-clamp-1">{item.nameSomali}</h3>
-                    <p className="text-[10px] text-slate-400 line-clamp-1">{item.name}</p>
+                    <h3 className="font-bold text-xs text-slate-800 line-clamp-1">{item.name}</h3>
+                    <p className="text-[10px] text-slate-400 line-clamp-1">{item.nameSomali}</p>
                   </div>
 
                   <div className="mt-3 flex items-center justify-between">
@@ -440,7 +440,7 @@ export default function CustomerOrderingApp() {
                     <input
                       type="text"
                       required
-                      placeholder="Magacaaga (Full Name)*"
+                      placeholder="Your Full Name*"
                       value={customerName}
                       onChange={(e) => setCustomerName(e.target.value)}
                       className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500/20"
@@ -448,7 +448,7 @@ export default function CustomerOrderingApp() {
                     <input
                       type="tel"
                       required
-                      placeholder="Telefoonka (e.g. 061XXXXXXX)*"
+                      placeholder="Phone Number (e.g. 061XXXXXXX)*"
                       value={customerPhone}
                       onChange={(e) => setCustomerPhone(e.target.value)}
                       className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500/20"
@@ -457,7 +457,7 @@ export default function CustomerOrderingApp() {
                       <input
                         type="text"
                         required
-                        placeholder="Cinwaanka (Guri / Dagmada / Meel caan ah)*"
+                        placeholder="Delivery Address (District, Street, Landmark)*"
                         value={deliveryAddress}
                         onChange={(e) => setDeliveryAddress(e.target.value)}
                         className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500/20"
@@ -467,13 +467,13 @@ export default function CustomerOrderingApp() {
 
                   {/* Branch Notice */}
                   <div className="pt-2 flex items-center justify-between text-[11px] text-slate-500 bg-slate-50 p-2 rounded-lg border border-slate-100">
-                    <span className="font-semibold">Laanta Dalabka:</span>
+                    <span className="font-semibold">Fulfillment Branch:</span>
                     <span className="font-bold text-rose-600">{selectedBranch}</span>
                   </div>
 
                   {/* Payment Method Selector */}
                   <div className="pt-2">
-                    <p className="text-[11px] font-bold text-slate-500 mb-1.5">HABKA LACAG BIXINTA</p>
+                    <p className="text-[11px] font-bold text-slate-500 mb-1.5">PAYMENT METHOD</p>
                     <div className="grid grid-cols-3 gap-1.5 text-[11px]">
                       {["EVC_PLUS", "ZAAD", "CASH"].map((m) => (
                         <button
@@ -496,12 +496,12 @@ export default function CustomerOrderingApp() {
                   <div className="pt-2">
                     <p className="text-[11px] font-bold text-slate-500 mb-1.5 flex items-center gap-1">
                       <Tag className="w-3 h-3 text-rose-500" />
-                      <span>KOODHKA DHIMISTA (PROMO CODE)</span>
+                      <span>PROMO / DISCOUNT CODE</span>
                     </p>
                     <div className="flex gap-2">
                       <input
                         type="text"
-                        placeholder="Gali koodh (e.g. WALAALAHA)"
+                        placeholder="Enter coupon code (e.g. WALAALAHA)"
                         value={couponCode}
                         onChange={(e) => setCouponCode(e.target.value)}
                         className="flex-1 px-3 py-1.5 text-xs bg-slate-50 border border-slate-200 rounded-lg uppercase font-bold focus:outline-none focus:ring-1 focus:ring-rose-500"
@@ -511,12 +511,12 @@ export default function CustomerOrderingApp() {
                         onClick={handleApplyCoupon}
                         className="px-3 py-1.5 bg-slate-900 text-white rounded-lg text-xs font-bold hover:bg-slate-800"
                       >
-                        Dhimis
+                        Apply
                       </button>
                     </div>
                     {couponApplied && (
                       <p className="text-[10px] text-emerald-600 font-bold mt-1">
-                        ✓ 10% dhimis ayaa lagu daray dalabkaaga!
+                        ✓ 10% promo discount applied to your order!
                       </p>
                     )}
                     {couponError && (
@@ -545,7 +545,7 @@ export default function CustomerOrderingApp() {
               )}
               {couponApplied && (
                 <div className="flex justify-between text-xs text-emerald-600 font-bold">
-                  <span>Dhimis (10% Promo)</span>
+                  <span>Discount (10% Promo)</span>
                   <span>-${discountAmount.toFixed(2)}</span>
                 </div>
               )}
@@ -554,7 +554,7 @@ export default function CustomerOrderingApp() {
                 <span className="font-bold text-slate-800">${tax.toFixed(2)}</span>
               </div>
               <div className="flex justify-between text-sm font-extrabold text-slate-900 pt-1 border-t border-slate-200">
-                <span>Wadarta Guud (Total)</span>
+                <span>Total Amount</span>
                 <span className="text-base text-rose-500 font-black">${total.toFixed(2)}</span>
               </div>
 
@@ -564,11 +564,11 @@ export default function CustomerOrderingApp() {
                 className="w-full py-3 bg-rose-500 hover:bg-rose-600 text-white font-bold text-xs rounded-xl shadow-md shadow-rose-500/25 disabled:opacity-50 transition-all flex items-center justify-center gap-2"
               >
                 {isSubmitting ? (
-                  <span>Dirayaa Dalabka...</span>
+                  <span>Submitting Order...</span>
                 ) : (
                   <>
                     <CheckCircle2 className="w-4 h-4" />
-                    <span>Xaqiiji & Dalbo Hadda (${total.toFixed(2)})</span>
+                    <span>Confirm & Place Order (${total.toFixed(2)})</span>
                   </>
                 )}
               </button>
@@ -581,8 +581,8 @@ export default function CustomerOrderingApp() {
       {activeTab === "track" && (
         <div className="flex-1 p-4 space-y-4">
           <div className="text-center pb-2">
-            <h2 className="font-black text-base text-slate-800">Dabagalka Dalabka (Live Tracking)</h2>
-            <p className="text-xs text-slate-400">Geli number-ka dalabkaaga si aad ula socoto xaaladdiisa</p>
+            <h2 className="font-black text-base text-slate-800">Live Order Tracking</h2>
+            <p className="text-xs text-slate-400">Enter your order number to track its real-time preparation</p>
           </div>
 
           {/* Search order input */}
@@ -598,7 +598,7 @@ export default function CustomerOrderingApp() {
               onClick={() => handleTrackLookup()}
               className="px-4 py-2 bg-rose-500 hover:bg-rose-600 text-white rounded-xl text-xs font-bold"
             >
-              Raadi
+              Track Order
             </button>
           </div>
 
@@ -612,7 +612,7 @@ export default function CustomerOrderingApp() {
             <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm space-y-4">
               <div className="flex items-center justify-between pb-3 border-b border-slate-100">
                 <div>
-                  <span className="text-[10px] font-bold text-slate-400 uppercase">Dalabka</span>
+                  <span className="text-[10px] font-bold text-slate-400 uppercase">Order Number</span>
                   <h3 className="font-black text-sm text-slate-900">{trackedOrder.orderNumber}</h3>
                 </div>
                 <span className="px-2.5 py-1 rounded-full text-[10px] font-extrabold bg-rose-50 text-rose-600 border border-rose-100">
@@ -623,10 +623,10 @@ export default function CustomerOrderingApp() {
               {/* Status Stepper */}
               <div className="space-y-3 py-2">
                 {[
-                  { step: 1, title: "Dalabka Waa La Helay", desc: "Order received in system", active: true },
-                  { step: 2, title: "Karsasho Jikada Ku Socota", desc: "Kitchen is preparing your food", active: trackedOrder.status === "COOKING" || trackedOrder.status === "READY" || trackedOrder.status === "PAID" },
-                  { step: 3, title: "Waa La Soo Wadaa", desc: "Out for delivery / Ready for pickup", active: trackedOrder.status === "READY" || trackedOrder.status === "PAID" },
-                  { step: 4, title: "Waa La Gaarsiiyay", desc: "Delivered to your address", active: trackedOrder.status === "SERVED" },
+                  { step: 1, title: "Order Confirmed", desc: "Order received in kitchen system", active: true },
+                  { step: 2, title: "Kitchen Preparing Food", desc: "Chefs are actively preparing your dishes", active: trackedOrder.status === "COOKING" || trackedOrder.status === "READY" || trackedOrder.status === "PAID" },
+                  { step: 3, title: "Out for Delivery / Ready", desc: "Packaged & ready for pickup or dispatch", active: trackedOrder.status === "READY" || trackedOrder.status === "PAID" },
+                  { step: 4, title: "Delivered & Completed", desc: "Enjoy your delicious meal!", active: trackedOrder.status === "SERVED" },
                 ].map((s) => (
                   <div key={s.step} className="flex items-start gap-3">
                     <div
@@ -651,11 +651,11 @@ export default function CustomerOrderingApp() {
               {/* Order Items Summary */}
               <div className="pt-3 border-t border-slate-100 text-xs space-y-1">
                 <div className="flex justify-between text-slate-500">
-                  <span>Wadarta Guud:</span>
+                  <span>Total Paid:</span>
                   <span className="font-extrabold text-slate-900">${Number(trackedOrder.totalAmount).toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-slate-500">
-                  <span>Nooca:</span>
+                  <span>Fulfillment Type:</span>
                   <span className="font-semibold text-slate-700">{trackedOrder.type}</span>
                 </div>
               </div>
@@ -671,15 +671,15 @@ export default function CustomerOrderingApp() {
             <span className="px-2 py-0.5 rounded-full bg-white/20 text-[10px] font-bold">
               Walaalaha Event Centers
             </span>
-            <h2 className="text-lg font-black mt-1">Hoolalka Aroosyada & Xafladaha</h2>
-            <p className="text-xs text-purple-100 mt-0.5">Ballanso hoolal casri ah oo leh nalka, codka & cuntada</p>
+            <h2 className="text-lg font-black mt-1">Wedding & Banquet Halls</h2>
+            <p className="text-xs text-purple-100 mt-0.5">Reserve luxury venues with sound, lighting & fine catering</p>
           </div>
 
           <div className="space-y-3">
             {[
-              { name: "Grand Diamond Ballroom", capacity: "500 - 800 Qof", price: "$3,200", icon: "🏛️" },
-              { name: "Somalia Banquet Hall A", capacity: "200 - 350 Qof", price: "$1,800", icon: "💎" },
-              { name: "VIP Executive Boardroom", capacity: "20 - 50 Qof", price: "$950", icon: "👑" },
+              { name: "Grand Diamond Ballroom", capacity: "500 - 800 Guests", price: "$3,200", icon: "🏛️" },
+              { name: "Executive Banquet Hall A", capacity: "200 - 350 Guests", price: "$1,800", icon: "💎" },
+              { name: "VIP Executive Boardroom", capacity: "20 - 50 Guests", price: "$950", icon: "👑" },
             ].map((hall) => (
               <div key={hall.name} className="p-4 bg-white rounded-2xl border border-slate-200 shadow-sm space-y-2">
                 <div className="flex items-center justify-between">
@@ -689,12 +689,12 @@ export default function CustomerOrderingApp() {
                   </div>
                   <span className="text-xs font-black text-purple-600">{hall.price}</span>
                 </div>
-                <p className="text-[11px] text-slate-500 font-medium">Qaadista: {hall.capacity}</p>
+                <p className="text-[11px] text-slate-500 font-medium">Capacity: {hall.capacity}</p>
                 <button
-                  onClick={() => alert(`Waxaad dalbatay ballansashada: ${hall.name}. Kooxda Walaalaha ayaa kula soo xiriiri doonta.`)}
+                  onClick={() => alert(`You requested a reservation inquiry for: ${hall.name}. Our event management team will contact you shortly.`)}
                   className="w-full py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-xl text-xs font-bold transition-all"
                 >
-                  Dalbo Ballan (Reserve Hall)
+                  Reserve Hall Now
                 </button>
               </div>
             ))}
