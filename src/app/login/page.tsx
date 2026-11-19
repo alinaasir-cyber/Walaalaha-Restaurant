@@ -32,9 +32,10 @@ export default function LoginPage() {
         return;
       }
 
-      // Successful login -> Redirect to Dashboard
-      router.push("/dashboard");
-      router.refresh();
+      // Successful login -> Redirect cleanly
+      const searchParams = new URLSearchParams(window.location.search);
+      const destination = searchParams.get("from") || "/";
+      window.location.href = destination;
     } catch (err) {
       setErrorMessage("Network error. Could not connect to the server.");
       setLoading(false);

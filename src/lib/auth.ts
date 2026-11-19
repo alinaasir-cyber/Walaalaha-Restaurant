@@ -2,9 +2,9 @@ import bcrypt from "bcryptjs";
 import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
 
-const JWT_SECRET_STRING =
-  process.env.JWT_SECRET || "walaalaha-restaurant-default-secret-key-change-in-prod";
-const JWT_SECRET = new TextEncoder().encode(JWT_SECRET_STRING);
+export const JWT_SECRET_STRING =
+  process.env.JWT_SECRET || "walaalaha-restaurant-super-secret-jwt-key-2026-auth";
+export const JWT_SECRET = new TextEncoder().encode(JWT_SECRET_STRING);
 
 export const SESSION_COOKIE_NAME = "walaalaha_session";
 

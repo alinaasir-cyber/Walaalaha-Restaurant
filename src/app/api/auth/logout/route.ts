@@ -19,7 +19,9 @@ export async function POST() {
 
     await deleteSessionCookie();
 
-    return NextResponse.json({ success: true, message: "Logged out successfully" });
+    const response = NextResponse.json({ success: true, message: "Logged out successfully" });
+    response.cookies.delete("walaalaha_session");
+    return response;
   } catch (error) {
     return NextResponse.json({ error: "Failed to logout" }, { status: 500 });
   }

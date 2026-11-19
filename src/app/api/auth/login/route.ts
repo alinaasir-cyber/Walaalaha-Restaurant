@@ -98,7 +98,7 @@ export async function POST(req: NextRequest) {
       details: { branch: user.branch?.name || "None" },
     });
 
-    return NextResponse.json({
+    const response = NextResponse.json({
       success: true,
       user: {
         id: user.id,
@@ -108,6 +108,16 @@ export async function POST(req: NextRequest) {
         branch: user.branch?.name,
       },
     });
+
+    response.cookies.set("walaalaha_session", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      path: "/",
+      maxAge: 60 * 60 * 24 * 7, // 7 days
+    });
+
+    return response;
   } catch (error: any) {
     console.error("Login API Error:", error);
     return NextResponse.json(
