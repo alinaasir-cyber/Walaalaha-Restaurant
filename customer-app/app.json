@@ -1,0 +1,23 @@
+{
+  "expo": {
+    "name": "Walaalaha Restaurant",
+    "slug": "walaalaha-restaurant",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "backgroundColor": "#f43f5e"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "so.walaalaha.restaurant"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#f43f5e"
+      },
+      "package": "so.walaalaha.restaurant"
+    }
+  }
+}

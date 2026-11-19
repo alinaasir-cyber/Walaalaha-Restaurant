@@ -68,7 +68,8 @@ export async function processOrderTransaction(input: CheckoutInput) {
   const orderNumber = `ORD-${Date.now().toString().slice(-6)}`;
 
   // Step 2: Atomic Database Transaction
-  const result = await prisma.$transaction(async (tx) => {
+  const result = await prisma.$transaction(
+    async (tx) => {
     // A. Create the Order
     const order = await tx.order.create({
       data: {
@@ -183,7 +184,9 @@ export async function processOrderTransaction(input: CheckoutInput) {
     });
 
     return order;
-  });
+  },
+  { timeout: 25000, maxWait: 15000 }
+);
 
   // Step 3: Record Audit Log outside tx
   await logAudit({

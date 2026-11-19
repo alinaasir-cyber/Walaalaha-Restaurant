@@ -11,6 +11,8 @@ export async function middleware(request: NextRequest) {
   // Public paths that do not require authentication
   if (
     pathname.startsWith("/login") ||
+    pathname.startsWith("/order") ||
+    pathname.startsWith("/api/customer") ||
     pathname.startsWith("/api/auth/login") ||
     pathname.startsWith("/_next") ||
     pathname.startsWith("/favicon.ico")
