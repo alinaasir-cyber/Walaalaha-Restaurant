@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Sidebar from "@/components/Sidebar";
-import Navbar from "@/components/Navbar";
+import AppShell from "@/components/AppShell";
 
 export const metadata: Metadata = {
   title: "Walaalaha Restaurant - ERP & POS System",
@@ -15,15 +14,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className="antialiased min-h-screen bg-slate-50 text-slate-900"
-        suppressHydrationWarning
-      >
-        <Sidebar />
-        <div className="lg:pl-64 flex flex-col min-h-screen">
-          <Navbar />
-          <main className="flex-1 p-6">{children}</main>
-        </div>
+      <body className="antialiased min-h-screen bg-slate-50 text-slate-900" suppressHydrationWarning>
+        <AppShell>{children}</AppShell>
       </body>
     </html>
   );
