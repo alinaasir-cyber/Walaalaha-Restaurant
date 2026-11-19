@@ -98,26 +98,30 @@ export default function Navbar() {
           <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-rose-500 rounded-full" />
         </button>
 
-        {/* User profile with Role & Logout */}
-        <div className="flex items-center gap-3 pl-2 border-l border-slate-200">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-rose-50 text-rose-600 flex items-center justify-center font-bold text-xs border border-rose-100">
+        {/* User profile with Role & Standalone Login Portal */}
+        <div className="flex items-center gap-2.5 pl-2 border-l border-slate-200">
+          <Link
+            href="/login"
+            title="Open Standalone Login Page"
+            className="flex items-center gap-2 group hover:opacity-85 transition-opacity"
+          >
+            <div className="w-8 h-8 rounded-full bg-rose-50 text-rose-600 group-hover:bg-rose-500 group-hover:text-white flex items-center justify-center font-bold text-xs border border-rose-100 transition-colors shadow-sm">
               <User className="w-4 h-4" />
             </div>
             <div className="hidden md:block text-left">
-              <p className="text-xs font-bold text-slate-800 leading-tight">
+              <p className="text-xs font-bold text-slate-800 group-hover:text-rose-600 transition-colors leading-tight">
                 {currentUser?.name || "Admin User"}
               </p>
               <p className="text-[10px] text-rose-500 font-semibold uppercase tracking-wider">
                 {currentUser?.role || "SUPER_ADMIN"}
               </p>
             </div>
-          </div>
+          </Link>
 
           <button
             onClick={handleLogout}
-            title="Sign Out"
-            className="p-1.5 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+            title="Sign Out & Go to Standalone Login"
+            className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors"
           >
             <LogOut className="w-4 h-4" />
           </button>

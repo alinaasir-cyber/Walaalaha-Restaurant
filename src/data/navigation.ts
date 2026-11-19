@@ -190,6 +190,7 @@ export const navigationData: NavSection[] = [
       { title: "Users", href: "/admin/users" },
       { title: "Roles", href: "/admin/roles" },
       { title: "Branches", href: "/admin/branches" },
+      { title: "Login Portal", href: "/login" },
     ],
   },
 ];
