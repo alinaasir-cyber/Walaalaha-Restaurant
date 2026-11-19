@@ -28,10 +28,10 @@ async function main() {
 
   // 3. Create Users with RBAC
   const admin = await prisma.user.upsert({
-    where: { email: "admin@walaalaha.so" },
+    where: { email: "admin@walaalaha.com" },
     update: { passwordHash: adminHash },
     create: {
-      email: "admin@walaalaha.so",
+      email: "admin@walaalaha.com",
       name: "Super Admin",
       phone: "+252 61 511 1111",
       passwordHash: adminHash,
