@@ -336,7 +336,7 @@ export default function HomePage() {
                   href="#halls"
                   className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-6 py-3.5 text-sm font-bold text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 rounded-2xl shadow-sm transition-all"
                 >
-                  <PartyPopper className="w-4 h-4 text-purple-600" />
+                  <PartyPopper className="w-4 h-4 text-rose-500" />
                   <span>Book Event Hall</span>
                 </a>
               </div>
@@ -583,7 +583,7 @@ export default function HomePage() {
       <section id="halls" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-14">
-            <span className="text-xs font-bold uppercase tracking-wider text-purple-600">
+            <span className="text-xs font-bold uppercase tracking-wider text-rose-500">
               Celebrations & Banquets
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mt-1">
@@ -602,7 +602,7 @@ export default function HomePage() {
               >
                 <div>
                   <div className="flex items-center justify-between mb-3">
-                    <span className="px-3 py-1 bg-purple-100 text-purple-700 text-[10px] font-black rounded-lg">
+                    <span className="px-3 py-1 bg-rose-50 text-rose-600 border border-rose-200 text-[10px] font-black rounded-lg">
                       {hall.badge}
                     </span>
                     <span className="text-xs font-bold text-slate-500">{hall.capacity}</span>
@@ -629,7 +629,7 @@ export default function HomePage() {
 
                   <Link
                     href="/order"
-                    className="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs rounded-xl shadow-md transition-all"
+                    className="px-4 py-2 bg-rose-500 hover:bg-rose-600 text-white font-bold text-xs rounded-xl shadow-md shadow-rose-500/25 transition-all"
                   >
                     Reserve Hall
                   </Link>

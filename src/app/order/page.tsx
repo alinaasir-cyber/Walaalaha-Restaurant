@@ -667,12 +667,12 @@ export default function CustomerOrderingApp() {
       {/* TAB 4: HALLS & EVENT RESERVATIONS */}
       {activeTab === "halls" && (
         <div className="flex-1 p-4 space-y-4">
-          <div className="p-4 rounded-2xl bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg">
+          <div className="p-4 rounded-2xl bg-gradient-to-r from-rose-500 to-rose-600 text-white shadow-lg shadow-rose-500/20">
             <span className="px-2 py-0.5 rounded-full bg-white/20 text-[10px] font-bold">
               Walaalaha Event Centers
             </span>
             <h2 className="text-lg font-black mt-1">Wedding & Banquet Halls</h2>
-            <p className="text-xs text-purple-100 mt-0.5">Reserve luxury venues with sound, lighting & fine catering</p>
+            <p className="text-xs text-rose-100 mt-0.5">Reserve luxury venues with sound, lighting & fine catering</p>
           </div>
 
           <div className="space-y-3">
@@ -687,12 +687,12 @@ export default function CustomerOrderingApp() {
                     <span className="text-2xl">{hall.icon}</span>
                     <h3 className="font-bold text-xs text-slate-800">{hall.name}</h3>
                   </div>
-                  <span className="text-xs font-black text-purple-600">{hall.price}</span>
+                  <span className="text-xs font-black text-rose-500">{hall.price}</span>
                 </div>
                 <p className="text-[11px] text-slate-500 font-medium">Capacity: {hall.capacity}</p>
                 <button
                   onClick={() => alert(`You requested a reservation inquiry for: ${hall.name}. Our event management team will contact you shortly.`)}
-                  className="w-full py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-xl text-xs font-bold transition-all"
+                  className="w-full py-2 bg-rose-500 hover:bg-rose-600 text-white rounded-xl text-xs font-bold shadow-md shadow-rose-500/25 transition-all"
                 >
                   Reserve Hall Now
                 </button>
@@ -742,7 +742,7 @@ export default function CustomerOrderingApp() {
         <button
           onClick={() => setActiveTab("halls")}
           className={`flex flex-col items-center gap-1 text-[10px] font-bold transition-all ${
-            activeTab === "halls" ? "text-purple-600" : "text-slate-400 hover:text-slate-600"
+            activeTab === "halls" ? "text-rose-500" : "text-slate-400 hover:text-slate-600"
           }`}
         >
           <PartyPopper className="w-5 h-5" />
