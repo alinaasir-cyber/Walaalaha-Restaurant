@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import {
   ChefHat,
   Search,
@@ -17,6 +18,8 @@ import {
   PartyPopper,
   RotateCcw,
   Sparkles,
+  Tag,
+  ArrowLeft,
 } from "lucide-react";
 
 interface MenuItem {
@@ -44,12 +47,31 @@ export default function CustomerOrderingApp() {
   const [loading, setLoading] = useState(true);
 
   // Checkout form state
+  const [selectedBranch, setSelectedBranch] = useState("Taleex Flagship (Mogadishu)");
   const [customerName, setCustomerName] = useState("");
   const [customerPhone, setCustomerPhone] = useState("");
   const [deliveryAddress, setDeliveryAddress] = useState("");
   const [orderType, setOrderType] = useState<"DELIVERY" | "TAKEAWAY">("DELIVERY");
   const [paymentMethod, setPaymentMethod] = useState<string>("EVC_PLUS");
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Discount code state
+  const [couponCode, setCouponCode] = useState("");
+  const [discountAmount, setDiscountAmount] = useState(0);
+  const [couponApplied, setCouponApplied] = useState(false);
+  const [couponError, setCouponError] = useState<string | null>(null);
+
+  const handleApplyCoupon = () => {
+    setCouponError(null);
+    const code = couponCode.trim().toUpperCase();
+    if (!code) return;
+    if (code === "WALAALAHA" || code === "BEYDAN" || code === "WELCOME10") {
+      setDiscountAmount(subtotal * 0.1);
+      setCouponApplied(true);
+    } else {
+      setCouponError("Koodhka dhimistu ma shaqeynayo (Invalid Code). Isticmaal WALAALAHA");
+    }
+  };
 
   // Tracking state
   const [trackingOrderNumber, setTrackingOrderNumber] = useState("");
@@ -119,7 +141,8 @@ export default function CustomerOrderingApp() {
   const subtotal = cart.reduce((sum, c) => sum + c.item.price * c.quantity, 0);
   const deliveryFee = orderType === "DELIVERY" && cart.length > 0 ? 2.0 : 0.0;
   const tax = subtotal * 0.05;
-  const total = subtotal + tax + deliveryFee;
+  const discount = couponApplied ? discountAmount : 0;
+  const total = Math.max(0, subtotal + tax + deliveryFee - discount);
 
   // Submit Order to Backend
   const handlePlaceOrder = async (e: React.FormEvent) => {
@@ -189,21 +212,40 @@ export default function CustomerOrderingApp() {
     <div className="max-w-md mx-auto min-h-screen bg-slate-50 border-x border-slate-200 shadow-xl flex flex-col pb-20">
       {/* Top Mobile Bar */}
       <header className="sticky top-0 z-30 bg-white border-b border-slate-200 px-4 py-3 flex items-center justify-between">
-        <div className="flex items-center gap-2.5">
-          <div className="w-9 h-9 rounded-xl bg-rose-500 flex items-center justify-center text-white shadow-md shadow-rose-500/25">
-            <ChefHat className="w-5 h-5" />
+        <div className="flex items-center gap-2">
+          <Link
+            href="/"
+            title="Ku noqo Website-ka"
+            className="w-8 h-8 rounded-xl bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-700 transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4" />
+          </Link>
+          <div className="w-8 h-8 rounded-xl bg-rose-500 flex items-center justify-center text-white shadow-md shadow-rose-500/25">
+            <ChefHat className="w-4 h-4" />
           </div>
           <div>
-            <h1 className="font-extrabold text-sm text-slate-900 leading-tight">Walaalaha</h1>
-            <p className="text-[10px] text-rose-500 font-bold uppercase tracking-wider">
+            <h1 className="font-extrabold text-xs text-slate-900 leading-tight">Walaalaha</h1>
+            <p className="text-[9px] text-rose-500 font-bold uppercase tracking-wider">
               Food & Delivery
             </p>
           </div>
         </div>
 
-        <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-100 text-[11px] font-medium text-slate-700">
-          <MapPin className="w-3 h-3 text-rose-500" />
-          <span className="truncate max-w-[120px]">Mogadishu, Somalia</span>
+        {/* Branch Selector Dropdown */}
+        <div className="flex items-center gap-1">
+          <MapPin className="w-3.5 h-3.5 text-rose-500 shrink-0" />
+          <select
+            value={selectedBranch}
+            onChange={(e) => setSelectedBranch(e.target.value)}
+            className="bg-slate-100 hover:bg-slate-200 border border-slate-200 rounded-full px-2 py-1 text-[10px] font-bold text-slate-700 focus:outline-none focus:ring-1 focus:ring-rose-500 cursor-pointer max-w-[130px] truncate"
+          >
+            <option value="Taleex Flagship (Mogadishu)">Taleex, Hodan</option>
+            <option value="KM4 Maka Al-Mukarama (Mogadishu)">KM4, Mogadishu</option>
+            <option value="Banaadir Mall (Mogadishu)">Banaadir Mall</option>
+            <option value="Xamar Weyne (Mogadishu)">Xamar Weyne</option>
+            <option value="Jigjiga Yar (Hargeisa)">Hargeisa</option>
+            <option value="Tamam Park (Garowe)">Garowe</option>
+          </select>
         </div>
       </header>
 
@@ -423,6 +465,12 @@ export default function CustomerOrderingApp() {
                     )}
                   </div>
 
+                  {/* Branch Notice */}
+                  <div className="pt-2 flex items-center justify-between text-[11px] text-slate-500 bg-slate-50 p-2 rounded-lg border border-slate-100">
+                    <span className="font-semibold">Laanta Dalabka:</span>
+                    <span className="font-bold text-rose-600">{selectedBranch}</span>
+                  </div>
+
                   {/* Payment Method Selector */}
                   <div className="pt-2">
                     <p className="text-[11px] font-bold text-slate-500 mb-1.5">HABKA LACAG BIXINTA</p>
@@ -443,6 +491,40 @@ export default function CustomerOrderingApp() {
                       ))}
                     </div>
                   </div>
+
+                  {/* Coupon Code Input */}
+                  <div className="pt-2">
+                    <p className="text-[11px] font-bold text-slate-500 mb-1.5 flex items-center gap-1">
+                      <Tag className="w-3 h-3 text-rose-500" />
+                      <span>KOODHKA DHIMISTA (PROMO CODE)</span>
+                    </p>
+                    <div className="flex gap-2">
+                      <input
+                        type="text"
+                        placeholder="Gali koodh (e.g. WALAALAHA)"
+                        value={couponCode}
+                        onChange={(e) => setCouponCode(e.target.value)}
+                        className="flex-1 px-3 py-1.5 text-xs bg-slate-50 border border-slate-200 rounded-lg uppercase font-bold focus:outline-none focus:ring-1 focus:ring-rose-500"
+                      />
+                      <button
+                        type="button"
+                        onClick={handleApplyCoupon}
+                        className="px-3 py-1.5 bg-slate-900 text-white rounded-lg text-xs font-bold hover:bg-slate-800"
+                      >
+                        Dhimis
+                      </button>
+                    </div>
+                    {couponApplied && (
+                      <p className="text-[10px] text-emerald-600 font-bold mt-1">
+                        ✓ 10% dhimis ayaa lagu daray dalabkaaga!
+                      </p>
+                    )}
+                    {couponError && (
+                      <p className="text-[10px] text-red-500 font-semibold mt-1">
+                        {couponError}
+                      </p>
+                    )}
+                  </div>
                 </div>
               </div>
             )}
@@ -459,6 +541,12 @@ export default function CustomerOrderingApp() {
                 <div className="flex justify-between text-xs text-slate-500">
                   <span>Delivery Fee</span>
                   <span className="font-bold text-slate-800">${deliveryFee.toFixed(2)}</span>
+                </div>
+              )}
+              {couponApplied && (
+                <div className="flex justify-between text-xs text-emerald-600 font-bold">
+                  <span>Dhimis (10% Promo)</span>
+                  <span>-${discountAmount.toFixed(2)}</span>
                 </div>
               )}
               <div className="flex justify-between text-xs text-slate-500">
