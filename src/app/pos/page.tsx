@@ -43,14 +43,7 @@ export default function POSDashboardPage() {
           </p>
         </div>
 
-        <div className="flex flex-wrap items-center gap-2.5">
-          <Link
-            href="/pos/kot"
-            className="flex items-center gap-1.5 px-3.5 py-2 bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 rounded-xl text-xs font-bold transition-all shadow-xs"
-          >
-            <ChefHat className="w-4 h-4 text-amber-600" />
-            Kitchen Display (KOT)
-          </Link>
+        <div className="flex items-center gap-2.5">
           <Link
             href="/pos/tables"
             className="flex items-center gap-1.5 px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold transition-all"
