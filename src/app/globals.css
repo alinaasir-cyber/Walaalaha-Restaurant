@@ -12,3 +12,35 @@ body {
   background: var(--background);
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 }
+
+/* Professional POS Thermal Receipt Print Styles (80mm / 58mm) */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  
+  #printable-receipt,
+  #printable-receipt * {
+    visibility: visible;
+  }
+  
+  #printable-receipt {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 80mm !important;
+    max-width: 80mm !important;
+    margin: 0 !important;
+    padding: 6mm !important;
+    box-shadow: none !important;
+    border: none !important;
+    font-size: 11px !important;
+    color: #000 !important;
+    background: #fff !important;
+  }
+
+  @page {
+    size: 80mm auto;
+    margin: 0;
+  }
+}

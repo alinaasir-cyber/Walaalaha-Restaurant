@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import {
   Search,
   Plus,
@@ -13,8 +14,11 @@ import {
   CheckCircle2,
   Receipt,
   RotateCcw,
+  ChefHat,
+  Printer,
 } from "lucide-react";
 import { initialMenuItems, initialTables, initialWaiters, MenuItem } from "@/data/mockData";
+import ThermalReceipt, { ReceiptData } from "@/components/ThermalReceipt";
 
 interface CartItem {
   item: MenuItem;
@@ -28,8 +32,8 @@ export default function POSMenuPage() {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [selectedTable, setSelectedTable] = useState<string>("tbl-1");
   const [selectedWaiter, setSelectedWaiter] = useState<string>("w-1");
-  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
-  const [lastPaymentMethod, setLastPaymentMethod] = useState("");
+  const [isReceiptOpen, setIsReceiptOpen] = useState(false);
+  const [receiptData, setReceiptData] = useState<ReceiptData | null>(null);
 
   const categories = ["All", "Main Dishes", "Breakfast", "Drinks", "Hot Drinks", "Snacks"];
 
@@ -79,12 +83,41 @@ export default function POSMenuPage() {
 
   const handleCheckout = (method: string) => {
     if (cart.length === 0) return;
-    setLastPaymentMethod(method);
-    setIsSuccessModalOpen(true);
+
+    const tableName = initialTables.find((t) => t.id === selectedTable)?.number || "Table 01";
+    const waiterName = initialWaiters.find((w) => w.id === selectedWaiter)?.name || "Ahmed Nur";
+    const now = new Date();
+    const formattedDate = `${now.toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+    })}, ${now.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" })}`;
+
+    const newReceipt: ReceiptData = {
+      orderNumber: `WAL-${Math.floor(1000 + Math.random() * 9000)}`,
+      tableNumber: tableName,
+      waiterName: waiterName,
+      cashierName: "Farah Mohamed (POS-01)",
+      branchName: "Walaalaha Main Branch",
+      date: formattedDate,
+      items: cart.map((c) => ({
+        name: c.item.name,
+        nameSomali: c.item.nameSomali,
+        quantity: c.quantity,
+        price: c.item.price,
+      })),
+      subtotal,
+      tax,
+      total,
+      paymentMethod: method,
+    };
+
+    setReceiptData(newReceipt);
+    setIsReceiptOpen(true);
   };
 
   const handleFinishOrder = () => {
-    setIsSuccessModalOpen(false);
+    setIsReceiptOpen(false);
     clearCart();
   };
 
@@ -100,8 +133,17 @@ export default function POSMenuPage() {
               <p className="text-xs text-slate-500">Walaalaha Restaurant Point of Sale</p>
             </div>
 
-            {/* Quick table & waiter selects */}
-            <div className="flex items-center gap-2 w-full sm:w-auto">
+            {/* Quick table & waiter selects + Kitchen Link */}
+            <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto">
+              <Link
+                href="/pos/kot"
+                className="flex items-center gap-1.5 px-3 py-1.5 bg-amber-50 hover:bg-amber-100 text-amber-700 border border-amber-200 rounded-xl text-xs font-bold transition-all"
+                title="Open Live Kitchen Screen"
+              >
+                <ChefHat className="w-3.5 h-3.5 text-amber-600" />
+                <span>Kitchen Screen (KOT)</span>
+              </Link>
+
               <div className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-700">
                 <Grid className="w-3.5 h-3.5 text-rose-500" />
                 <select
@@ -329,41 +371,13 @@ export default function POSMenuPage() {
         </div>
       </div>
 
-      {/* Payment Success Modal */}
-      {isSuccessModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-          <div className="bg-white rounded-2xl max-w-sm w-full p-6 text-center shadow-2xl">
-            <div className="w-14 h-14 mx-auto rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mb-4">
-              <CheckCircle2 className="w-8 h-8" />
-            </div>
-            <h3 className="text-lg font-bold text-slate-800">Payment Successful!</h3>
-            <p className="text-xs text-slate-500 mt-1">
-              Order paid via <span className="font-semibold text-slate-700">{lastPaymentMethod}</span>
-            </p>
-
-            <div className="my-4 p-3 bg-slate-50 rounded-xl border border-slate-100 text-xs space-y-1">
-              <div className="flex justify-between">
-                <span className="text-slate-500">Order Total:</span>
-                <span className="font-bold text-slate-800">${total.toFixed(2)}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-slate-500">Branch:</span>
-                <span className="font-semibold text-slate-700">Walaalaha Main</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-slate-500">Status:</span>
-                <span className="font-bold text-emerald-600">PAID & SENT TO KITCHEN</span>
-              </div>
-            </div>
-
-            <button
-              onClick={handleFinishOrder}
-              className="w-full py-2.5 bg-rose-500 hover:bg-rose-600 text-white font-bold text-xs rounded-xl shadow-md shadow-rose-500/25 transition-all"
-            >
-              Start Next Order
-            </button>
-          </div>
-        </div>
+      {/* Professional Thermal Receipt & Print Dialog */}
+      {receiptData && (
+        <ThermalReceipt
+          isOpen={isReceiptOpen}
+          onClose={handleFinishOrder}
+          data={receiptData}
+        />
       )}
     </div>
   );
